@@ -113,6 +113,7 @@ function hightlight_by_country(event, data, featuresByName)
 {
     let received = event.detail; // -> {country:'country'}
     let country = received?.["country"];
+    document.getElementById("message_container").innerHTML = `Selected : '${country}'`;
 
     if(featuresByName.hasOwnProperty(country))
     {
