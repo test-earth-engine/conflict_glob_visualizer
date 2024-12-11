@@ -9,12 +9,11 @@ main();
 async function main() 
 {
     let population_data = await population_data_get(); 
-
     let featuresByName = await features_by_name_get(population_data); 
-
-    wwd.world_wind_create("canvas1_id", population_data, featuresByName, null); 
 /*
-    showSpinner2(); 
+    wwd.world_wind_create("canvas1_id", population_data, featuresByName, null); 
+    plotly_create(population_data); 
+*/
     wwd.world_wind_create("canvas1_id", 
         population_data, 
         featuresByName, 
@@ -22,8 +21,6 @@ async function main()
             plotly_create(population_data); 
         }
     ); 
-*/
-    plotly_create(population_data); 
 
     interactions(population_data, featuresByName); 
 }
