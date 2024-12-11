@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Active Time</title>
+</head>
+<body>
+    <h1>Wellcome</h1>
+    <p>Time active: <span id="activeTime">0</span> seconds</p>
+
+    <script>
+        let seconds = 0;
+
+        // Update the timer every second
+        setInterval(() => {
+            seconds++;
+            document.getElementById("activeTime").textContent = seconds;
+        }, 1000);
+    </script>
+</body>
+</html>
