@@ -1,0 +1,9 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack --config webpack.config.js", 
+    "deploy": "gh-pages -d dist",
+    "start": "webpack serve --config webpack.config.js --open --port 5000"
+  }
+}
