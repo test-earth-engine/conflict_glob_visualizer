@@ -523,6 +523,24 @@ async function world_wind_interaction(country, data, featuresByName)
     let feature = feature_by_country_get(country, data, featuresByName); 
     let [longitude, latitude] = centroid_calculate(feature); 
     lookAtCoordinates(world_wind, latitude, longitude, 10e6, 5e3, null);     
+
+    highlight_by_displayName(country);     
+}
+
+
+async function highlight_by_displayName(displayName) 
+{
+    for (var i = 0; i < world_wind.layers.length; i++) 
+    {
+        let layer = world_wind.layers[i]; 
+        let renderables = layer.renderables; 
+        if(renderables) renderables.forEach(item => item.highlighted = false); 
+
+        if(layer.displayName === displayName)
+        {
+            renderables.forEach(item => item.highlighted = true); 
+        }
+    }        
 }
 
 
