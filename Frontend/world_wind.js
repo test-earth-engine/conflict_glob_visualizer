@@ -368,7 +368,7 @@ function initializeWorldWind(canvasId)
         {layer: starFieldLayer, enabled: true},
         //{layer: new WorldWind.CompassLayer(), enabled: true},
         {layer: coordinatesDisplayLayer, enabled: true},
-        {layer: new WorldWind.ViewControlsLayer(wwd), enabled: true}
+        //{layer: new WorldWind.ViewControlsLayer(wwd), enabled: true}
     ];
 
     for (var l = 0; l < layers.length; l++) {
