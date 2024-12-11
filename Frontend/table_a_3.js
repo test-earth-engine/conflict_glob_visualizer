@@ -8,9 +8,23 @@ async function on_click_selected_cell_get(event)
     if (cell) 
     {
         const textElement = cell.querySelector('text');
+        //console.log(`innerHTML:'${textElement.innerHTML}'`); 
         if (textElement) 
         {
-            let selected = textElement.textContent; 
+            let selected = null; 
+            const tspans = textElement.querySelectorAll('tspan');
+            //console.log( tspans.length ); 
+            if(tspans.length > 0) 
+            {
+                selected = Array.from(tspans).map(tspan => tspan.textContent).join(' ');
+                //console.log(`tspans: '${selected}'`);    
+            }
+            else 
+            {
+                selected = textElement.textContent; 
+                //console.log(`selected:'${selected}'`); 
+            }
+
             return selected; 
         }
     }
