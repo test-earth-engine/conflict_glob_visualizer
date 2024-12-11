@@ -86,7 +86,10 @@ async function redraw_a(plot_in, data)
     keys.forEach((key,i) => 
     {
         plot_in.data[0].header.values[i+1] = `<b>${key}</b>`; 
-        plot_in.data[0].cells.values[i+1] = data.map(it => it[key]); 
+        plot_in.data[0].cells.values[i+1] = data.map(it =>{ 
+//            console.log( it[key] ); 
+            return it[key]; 
+        }); 
     })
 
     plot_in.data[0].header.values[0] = `<b> </b>`; 
