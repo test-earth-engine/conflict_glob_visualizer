@@ -1,0 +1,64 @@
+name: webpack_build
+
+on:
+  workflow_dispatch :
+
+  push :
+    paths: 
+      - 'Frontend/*.*'
+      - 'docs/*.*'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run : | 
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          echo "${{ github.actor }}" 
+          gh auth status
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18  
+
+      - name: Install dependencies
+        run: |
+          npm install webpack webpack-cli
+          npm install gh-pages
+
+      - name: Build project
+        run: |
+          npm run build  
+          cp Frontend/ucdp_i.html dist/index.html
+          ls -la dist
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: webpack-bundle
+          path: dist/*.* 
+
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run : | 
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          #npm run deploy
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          #github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist
+
