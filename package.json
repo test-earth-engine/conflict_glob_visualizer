@@ -1,6 +1,6 @@
 {
-  "name": "my-project",
-  "version": "1.0.0",
+  "name": "conflict_glob_visualizer",
+  "version": "0.0.1",
   "scripts": {
     "build": "webpack --config webpack.config.js", 
     "deploy": "gh-pages -d dist",
