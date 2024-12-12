@@ -33,6 +33,7 @@ function modify_color_by_name(event, plot_in)
 {
     let received = event.detail; // -> {country:'country'}
     let country = received?.["country"];
+    country = country.trim();
 
     plot_in.data[0].marker.color = colors.map(item => item);
 
